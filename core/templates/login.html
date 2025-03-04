@@ -1,0 +1,25 @@
+{% extends "login-base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1>Login</h1>
+
+<div align="center">
+    <form action="submit" method="POST">
+        {% csrf_token %}
+        <label for="usuario">Usuário:</label>
+        <input type="text" name="username" id="usuario">
+
+        <label for="senha">Senha:</label>
+        <input type="password" name="password" id="senha">
+
+        <button type="submit">Entrar</button>
+    </form>
+
+    {% for message in messages %}
+        <strong>Erro</strong>{{ message }}
+    {% endfor %}
+</div>
+
+{% endblock %}

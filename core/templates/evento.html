@@ -1,0 +1,36 @@
+{% extends "model-page.html" %}
+{% load static %}
+
+{% block content %}
+
+<h2>Evento</h2>
+
+<a href="/agenda/">
+    <button type="button">Agenda</button>
+</a>
+<br>
+<br>
+
+<form action="submit" method="post">
+    {% csrf_token %}
+    <label for="titulo">Título:</label>
+    <br>
+    <input type="text" name="titulo" id="titulo">
+    <br>
+    <label for="data_evento">Data do Evento:</label>
+    <br>
+    <input type="datetime-local" name="data_evento" id="data_evento">
+    <br>
+    <label for="descricao">Descrição:</label>
+    <br>
+    <textarea name="descricao" rows="5" cols="23" id="descricao"></textarea>
+    <br>
+    <br>
+
+    <button type="submit">Salvar</button>
+    <a href="/agenda/">
+        <button type="button">Cancelar</button>
+    </a>
+</form>
+
+{% endblock %}

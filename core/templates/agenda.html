@@ -11,13 +11,16 @@
 
 <ul>
     {% for evento in eventos %}
-        <li>{{ evento.titulo }} - {{ evento.data_evento|date:"d/m/Y H:i" }} - 
+        <li>{{ evento.titulo }} - {{ evento.data_evento|date:"d/m/Y H:i" }} 
             {% if evento.local == None %}
-                Nenhum local cadastrado
+                
             {% else %}
-                {{ evento.local }}
+                - {{ evento.local }}
             {% endif %}
+            | <a href="evento/?id={{ evento.id }}"><button type="button">Editar</button></a> | <a href="evento/delete/{{evento.id}}"><button type="button">Excluir</button></a>
         </li>
+    {% empty %}
+        <li>Nenhum evento cadastrado</li>
     {% endfor %}
 </ul>
 

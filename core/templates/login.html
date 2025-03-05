@@ -6,30 +6,44 @@
 {% endblock %}
 
 {% block content %}
+<div class="flex-shrink-0 w-100 m-auto form-signin">
+    <form action="submit" method="POST">
+        {% csrf_token %}
+        <div class="d-flex justify-content-start align-items-center mb-4">
+            <img class="" src="{% static "images/book-solid.svg" %}" alt="" width="72" height="57">
+            <h1 class="h3 fw-normal">Login</h1>
+        </div>
 
-<form action="submit" method="POST">
-    {% csrf_token %}
-    <div class="d-flex justify-content-start align-items-center mb-4">
-        <img class="" src="{% static "images/book-solid.svg" %}" alt="" width="72" height="57">
-        <h1 class="h3 fw-normal">Login</h1>
-    </div>
+        <div class="form-floating">
+            <input class="form-control" type="text" name="username" id="usuario" placeholder="johndoe" required style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
+            <label for="usuario">Usuário:</label>
+        </div>
 
-    <div class="form-floating">
-        <input class="form-control" type="text" name="username" id="usuario" placeholder="johndoe" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
-        <label for="usuario">Usuário:</label>
-    </div>
+        <div class="form-floating">
+            <input class="form-control" type="password" name="password" id="senha" placeholder="Password" required style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
+            <label for="senha">Senha:</label>
+        </div>
 
-    <div class="form-floating">
-        <input class="form-control" type="password" name="password" id="senha" placeholder="Password" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
-        <label for="senha">Senha:</label>
-    </div>
+        {% for message in messages %}
+            <div class="alert alert-danger">
+                <strong>Erro:</strong> {{ message }}
+            </div>
+        {% endfor %}
 
-    {% for message in messages %}
-        <strong>Erro</strong>{{ message }}
-    {% endfor %}
+        <button class="btn btn-primary w-100 py-2 mb-5" type="submit">Entrar</button>
+    </form>
 
-    <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
-
-</form>
+    <p class="mb-1">Não tem uma conta? faça o cadastro:</p>
+    <a href="/registro/">
+        <button class="btn btn-success w-100 mb-5">
+            Registrar
+        </button>
+    </a>
+    <a href="/">
+        <button class="btn btn-secondary w-100 mt-5">
+            Home
+        </button>
+    </a>
+</div>
 
 {% endblock %}

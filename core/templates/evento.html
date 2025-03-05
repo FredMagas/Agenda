@@ -3,39 +3,47 @@
 
 {% block content %}
 
-<h2>Evento</h2>
+<h1 class="mb-5 mt-2">Evento</h1>
 
-<a href="/agenda/">
-    <button type="button">Agenda</button>
-</a>
-<br>
-<br>
+<div class="mb-4">
+    <a href="/agenda/">
+        <button class="btn btn-primary" type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Voltar para a Agenda">Agenda</button>
+    </a>
+</div>
 
 <form action="submit" method="post">
     {% csrf_token %}
-    <input type="number" name="id_evento" id="id_evento" value="{{ evento.id }}" hidden>
-    <label for="titulo">Título:</label>
-    <br>
-    <input type="text" name="titulo" id="titulo" value="{{ evento.titulo }}">
-    <br>
-    <label for="local">Local do Evento:</label>
-    <br>
-    <input type="text" name="local" id="local" value="{{ evento.local }}">
-    <br>
-    <label for="data_evento">Data do Evento:</label>
-    <br>
-    <input type="datetime-local" name="data_evento" id="data_evento" value="{{ evento.get_data_input_evento }}">
-    <br>
-    <label for="descricao">Descrição:</label>
-    <br>
-    <textarea name="descricao" rows="5" cols="23" id="descricao">{{ evento.descricao }}</textarea>
-    <br>
-    <br>
 
-    <button type="submit">Salvar</button>
-    <a href="/agenda/">
-        <button type="button">Cancelar</button>
-    </a>
+    <div class="mb-3">
+        <input class="form-control" type="number" name="id_evento" id="id_evento" value="{{ evento.id }}" hidden>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="titulo">Título:</label>
+        <input class="form-control" type="text" name="titulo" id="titulo" value="{{ evento.titulo }}">
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label" for="local">Local do Evento:</label>
+        <input class="form-control" type="text" name="local" id="local" value="{{ evento.local }}">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="data_evento">Data do Evento:</label>
+        <input class="form-control" type="datetime-local" name="data_evento" id="data_evento" value="{{ evento.get_data_input_evento }}">
+    </div>
+
+    <div class="form-floating">
+        <textarea class="form-control" name="descricao" rows="5" cols="23" id="descricao">{{ evento.descricao }}</textarea>
+        <label class="form-label" for="descricao">Descrição:</label>
+    </div>
+
+    <div class="mt-2">
+        <button class="btn btn-primary" type="submit">Salvar</button>
+        <a class="ms-2" href="/agenda/">
+            <button class="btn btn-danger" type="button">Cancelar</button>
+        </a>
+    </div>
 </form>
 
 {% endblock %}

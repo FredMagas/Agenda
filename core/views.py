@@ -37,6 +37,7 @@ def lista_eventos(request):
 
     context = {
         'eventos': eventos,
+        'usuario': usuario,
     }
     return render(request, 'agenda.html',context)
 
@@ -48,6 +49,19 @@ def evento(request):
         dados['evento'] = Evento.objects.get(id=id_evento)
 
     return render(request, 'evento.html', dados)
+
+@login_required(login_url='/login/')
+def evento_historico(request):
+    usuario = request.user
+    data_atual = datetime.now() - timedelta(hours=1)
+    eventos = Evento.objects.filter(usuario=usuario, 
+                                    data_evento__lt=data_atual)
+
+    context = {
+        'eventos': eventos,
+        'usuario': usuario,
+    }
+    return render(request, 'evento_historico.html',context)
 
 @login_required(login_url='/login/')
 def submit_evento(request):
@@ -87,3 +101,10 @@ def delete_evento(request, id_evento):
     else:
         raise Http404()
     return redirect('/')
+
+@login_required(login_url='/login/')
+def json_lista_eventos(request):
+    usuario = request.user
+    evento = Evento.objects.filter(usuario=usuario).values('id', 'titulo')
+
+    return JsonResponse(list(evento), safe=False)

@@ -8,6 +8,9 @@ from .models import *
 
 # Create your views here.~
 
+def index(request):
+    return render(request, 'index.html')
+
 def login_user(request):
 
     return render( request, 'login.html')
@@ -44,7 +47,7 @@ def lista_eventos(request):
 @login_required(login_url='/login/')
 def evento(request):
     id_evento = request.GET.get('id')
-    dados = {}
+    dados = {'usuario': request.user}
     if id_evento:
         dados['evento'] = Evento.objects.get(id=id_evento)
 

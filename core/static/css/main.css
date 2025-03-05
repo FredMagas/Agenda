@@ -3,6 +3,11 @@ body {
     height: 100%;
 }
 
+p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 a {
     text-decoration: none !important;
 }

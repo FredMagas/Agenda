@@ -1,25 +1,35 @@
 {% extends "login-base.html" %}
 {% load static %}
 
+{% block title %}
+        Login - Agenda
+{% endblock %}
+
 {% block content %}
 
-<h1>Login</h1>
+<form action="submit" method="POST">
+    {% csrf_token %}
+    <img class="mb-4" src="{% static "images/book-solid.svg" %}" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Login</h1>
 
-<div align="center">
-    <form action="submit" method="POST">
-        {% csrf_token %}
+    <div class="form-floating">
+        <input class="form-control" type="text" name="username" id="usuario" placeholder="johndoe" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
         <label for="usuario">Usuário:</label>
-        <input type="text" name="username" id="usuario">
+    </div>
 
+    <div class="form-floating">
+        <input class="form-control" type="password" name="password" id="senha" placeholder="Password" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
         <label for="senha">Senha:</label>
-        <input type="password" name="password" id="senha">
-
-        <button type="submit">Entrar</button>
-    </form>
+    </div>
 
     {% for message in messages %}
         <strong>Erro</strong>{{ message }}
     {% endfor %}
-</div>
+
+    <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
+
+    <p class="mt-5 mb-3 text-body-secondary">© Frederico Magalhães - 2025</p>
+
+</form>
 
 {% endblock %}

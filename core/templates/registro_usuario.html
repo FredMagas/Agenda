@@ -7,6 +7,97 @@
 
 {% block content %}
 
+<div class="flex-shrink-0 w-100 m-auto form-signup">
+    <form method="POST" action="submit">
+        {% csrf_token %}
 
+        <div class="d-flex justify-content-start align-items-center mb-4">
+            <img class="" src="{% static "images/book-solid.svg" %}" alt="" width="72" height="57">
+            <h1 class="h3 fw-normal">Registro</h1>
+        </div>
+
+        {{ form.non_field_errors }}
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="username" name="username" placeholder="johndoe" required value="{{ form.username.value }}" autocomplete="username" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
+            <label for="username">Usuário: *</label>
+            {% if form.username.errors %}
+                <div class="alert alert-danger">
+                    {{ form.username.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Nome" required value="{{ form.first_name.value }}" autocomplete="name" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
+            <label for="first_name">Nome: *</label>
+            {% if form.first_name.errors %}
+                <div class="alert alert-danger">
+                    {{ form.first_name.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Sobrenome" required value="{{ form.last_name.value }}" autocomplete="family-name" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
+            <label for="last_name">Sobrenome: *</label>
+            {% if form.last_name.errors %}
+                <div class="alert alert-danger">
+                    {{ form.last_name.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-floating">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required value="{{ form.email.value }}" autocomplete="email" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
+            <label for="email">Email: *</label>
+            {% if form.email.errors %}
+                <div class="alert alert-danger">
+                    {{ form.email.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="confirm_email" name="confirm_email" placeholder="Confirme email" required value="{{ form.confirm_email.value }}" autocomplete="email" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
+            <label for="confirm_email">Confirme o email: *</label>
+            {% if form.confirm_email.errors %}
+                <div class="alert alert-danger">
+                    {{ form.confirm_email.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required autocomplete="new-password" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
+            <label for="password">Senha: *</label>
+            {% if form.password.errors %}
+                <div class="alert alert-danger">
+                    {{ form.password.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirme Senha" required autocomplete="new-password" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
+            <label for="confirm_password">Confirme a senha: *</label>
+            {% if form.confirm_password.errors %}
+                <div class="alert alert-danger">
+                    {{ form.confirm_password.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mb-5">Cadastrar</button>
+    </form>
+
+    <p class="mb-1">Já tem uma conta? faça o login:</p>
+    <a href="/login/">
+        <button class="btn btn-danger w-100">
+            Voltar para Login
+        </button>
+    </a>
+</div>
+
+{% if form.errors %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+        registerModal.show();
+    });
+</script>
+{% endif %}
 
 {% endblock %}

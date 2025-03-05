@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from datetime import datetime, timedelta
 from django.http.response import Http404, JsonResponse
+from .forms import UserRegistrationForm
 from .models import *
 
 # Create your views here.~
@@ -17,8 +18,27 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-def login_user(request):
+def registro(request):
+    return render(request, 'registro_usuario.html')
 
+def submit_registro(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+
+            # Render the registration pending page
+            return render(request, 'registro_sucesso.html')  
+        else:
+            return render(request, 'registro_usuario.html', {'form': form})
+    return render(request, 'registro_usuario.html')
+
+# def registro_sucesso(request):
+#     return render(request, 'registro_sucesso.html')
+
+def login_user(request):
     return render( request, 'login.html')
 
 def submit_login(request):
@@ -31,7 +51,7 @@ def submit_login(request):
             return redirect('/agenda/')
         else:
             messages.error(request, 'Usuário ou senha inválidos!')
-    return redirect('/')
+    return redirect('/login/')
 
 def logout_user(request):
     logout(request)
@@ -95,8 +115,8 @@ def submit_evento(request):
                                 data_evento=data_evento,
                                 descricao=descricao,
                                 usuario=usuario,)
-        return redirect('/')
-    return redirect('/')
+        return redirect('/agenda/')
+    return redirect('/agenda/')
 
 @login_required(login_url='/login/')
 def delete_evento(request, id_evento):

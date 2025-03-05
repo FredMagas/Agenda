@@ -9,7 +9,13 @@ from .models import *
 # Create your views here.~
 
 def index(request):
-    return render(request, 'index.html')
+    usuario = request.user
+
+    context = {
+        'usuario': usuario,
+    }
+
+    return render(request, 'index.html', context)
 
 def login_user(request):
 
@@ -22,7 +28,7 @@ def submit_login(request):
         usuario = authenticate(username=username, password=password)
         if usuario is not None:
             login(request, usuario)
-            return redirect('/')
+            return redirect('/agenda/')
         else:
             messages.error(request, 'Usuário ou senha inválidos!')
     return redirect('/')

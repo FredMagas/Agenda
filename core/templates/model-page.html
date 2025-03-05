@@ -15,20 +15,35 @@
     <header>
         <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="{% static "images/book-solid.svg" %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     Agenda
                 </a>
-                <div align="right" class="d-flex justify-content-center align-items-center">
-                    <div class="me-2">
-                        <p>Olá, {{ usuario.first_name }}</p>
+                {% if user.is_authenticated %}
+                    <div align="right" class="d-flex justify-content-center align-items-center">
+                        <div class="me-2">
+                            <p>Olá, {{ usuario.first_name }}</p>
+                        </div>
+                        <a href="/agenda/">
+                            <button class="btn btn-primary me-2">
+                                Agenda
+                            </button>
+                        </a>
+                        <a href="/logout">
+                            <button class="btn btn-danger">
+                                Logout
+                            </button>
+                        </a>
                     </div>
-                    <a href="/logout">
-                        <button class="btn btn-danger">
-                            Logout
-                        </button>
-                    </a>
-                </div>
+                {% else %}
+                    <div align="right" class="d-flex justify-content-center align-items-center">
+                        <a href="/login/">
+                            <button class="btn btn-primary">
+                                Login
+                            </button>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </nav>
     </header>

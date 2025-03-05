@@ -27,7 +27,6 @@ urlpatterns = [
     path("agenda/evento/", evento, name="evento"),
     path("agenda/evento/submit", submit_evento, name="evento"),
     path("agenda/evento/delete/<int:id_evento>", delete_evento, name="delete_evento"),
-    
     path("login/", login_user, name="login"),
     path("login/submit", submit_login, name="submit_login"),
     path("logout/", logout_user, name="logout_user"),

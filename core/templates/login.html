@@ -9,8 +9,10 @@
 
 <form action="submit" method="POST">
     {% csrf_token %}
-    <img class="mb-4" src="{% static "images/book-solid.svg" %}" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Login</h1>
+    <div class="d-flex justify-content-start align-items-center mb-4">
+        <img class="" src="{% static "images/book-solid.svg" %}" alt="" width="72" height="57">
+        <h1 class="h3 fw-normal">Login</h1>
+    </div>
 
     <div class="form-floating">
         <input class="form-control" type="text" name="username" id="usuario" placeholder="johndoe" style="background-image: url(&quot;chrome-extension://ibkoenhablealnikeefmjineccmgegmh/src/images/icons/iconForce-32.png&quot;) !important; background-position: calc(99% - 12px) 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position, background-size !important; cursor: default;">
